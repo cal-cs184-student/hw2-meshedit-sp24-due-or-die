@@ -16,7 +16,13 @@ namespace CGL
   std::vector<Vector2D> BezierCurve::evaluateStep(std::vector<Vector2D> const &points)
   { 
     // TODO Part 1.
-    return std::vector<Vector2D>();
+    vector<Vector2D> next_curve;
+    int num_points = points.size();
+    for(int i = 0; i < num_points - 1; i++){
+      Vector2D next_point = points[i] * (1 - t) + points[i+1] * t;
+      next_curve.push_back(next_point);
+    }
+    return next_curve;
   }
 
   /**
