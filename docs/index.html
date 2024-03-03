@@ -41,8 +41,8 @@
 
 <h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2018</h1>
 <h1 align="middle">Project 2: Mesh Edit</h1>
-<h2 align="middle">YOUR NAME</h2>
-
+<h2 align="middle">Ruijie Jian</h2>
+<h2 align="middle">(/docs)https://cal-cs184-student.github.io/hw2-meshedit-sp24-due-or-die/</h2>
 <br><br>
 
 <div>
@@ -295,26 +295,69 @@
   Briefly explain how you implemented the loop subdivision and describe any interesting implementation / debugging tricks you have used.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  I basically followed the specs and comments to implement the loop subdivision. First, I calculated the newPosition for all the points, and then iterated through the edges to perform split operations. Next, for edges where isNew is true, if they connect a new point with an old one, I performed a flip operation on them. During the debugging process, my graphics were very strange. After several hours of debugging, I realized that vertices with a degree of 3 were dipping in, while others were protruding. So, I considered that there might be an error when calculating the coefficient u. Indeed, when the degree wasn't 3, my floating-point division was written as integer division, causing u, which should have been a fraction, to turn into 0.
 </p>
 <br>
-
+<div align="middle">
+  <img src="images/err.png" align="middle" width="50%">
+  <figcaption>error image</figcaption>
+</div>  
 
 <b>
   Take some notes, as well as some screenshots, of your observations on how meshes behave after loop subdivision. What happens to sharp corners and edges? Can you reduce this effect by pre-splitting some edges?
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  After the Loop subdivision, the mesh becomes denser and appears smoother. At the sharp corners of the cube, it is evident that the corners have also become smooth. I believe that this cannot be avoided through pre-splitting because the smoothing of the sharp edges is likely influenced by the positional weights during the position update. I tried to make the cube more cubic, but the sharp edges are certainly going to be "pulled down" by the surrounding points.
 </p>
 <br>
-
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/p6-1.png" align="middle" width="400px"/>
+        <figcaption>Level 0</figcaption>
+      </td>
+      <td>
+        <img src="images/p6-2.png" align="middle" width="400px"/>
+        <figcaption>Level 1</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr align="center">
+      <td>
+        <img src="images/p6-3.png" align="middle" width="400px"/>
+        <figcaption>Level 2</figcaption>
+      </td>
+      <td>
+        <img src="images/p6-4.png" align="middle" width="400px"/>
+        <figcaption>Level 3</figcaption>
+      </td>
+    </tr>
+    <br>
+  </table>
+</div>
 
 <b>
   Load dae/cube.dae. Perform several iterations of loop subdivision on the cube. Notice that the cube becomes slightly asymmetric after repeated subdivisions. Can you pre-process the cube with edge flips and splits so that the cube subdivides symmetrically? Document these effects and explain why they occur. Also explain how your pre-processing helps alleviate the effects.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  This can be achieved by pre-splitting the diagonals on each face once. The underlying principle of this method is to ensure that each vertex of the cube has a degree of 6, thereby avoiding the asymmetry caused by different degrees during the position update.
 </p>
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/p6-re.png" align="middle" width="400px"/>
+        <figcaption>Level 0</figcaption>
+      </td>
+      <td>
+        <img src="images/p6-re1.png" align="middle" width="400px"/>
+        <figcaption>Level 3</figcaption>
+      </td>
+    </tr>
+    <br>
+  </table>
+</div>
 <br>
 
 
