@@ -158,7 +158,7 @@
   Briefly explain how you implemented the area-weighted vertex normals.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  My implementation code refers to the printNeighborPositions function. During the iteration over each triangle, it accesses its face and calls the face()->normal() method to obtain the normalized normal vector, which is then accumulated (specifically, if it is a half-edge on the boundary, the step of taking its face is skipped). Finally, the resulting vector is normalized using the unit() method to obtain the area-weighted vertex normal.
 </p>
 <br>
 
@@ -166,9 +166,20 @@
 <b>
   Show screenshots of dae/teapot.dae (not .bez) comparing teapot shading with and without vertex normals. Use <kbd>Q</kbd> to toggle default flat shading and Phong shading.
 </b>
-<p>
-    YOUR RESPONSE GOES HERE
-</p>
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/t3-1.png" align="middle" width="400px"/>
+        <figcaption>without vertex normals</figcaption>
+      </td>
+      <td>
+        <img src="images/t3.png" align="middle" width="400px"/>
+        <figcaption>with vertex normals</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
 <br>
 
 
@@ -177,7 +188,7 @@
   Briefly explain how you implemented the edge flip operation and describe any interesting implementation / debugging tricks you have used.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  For the edge flip operation, I drew two triangles, selected the e0 edge, and labeled all the elements involved in the flip operation. Then, I assigned values to these elements. Next, based on the diagram after the flip, I adjusted the pointers of the elements. Once all the element pointers are properly adjusted, the flip operation is effectively completed.
 </p>
 <br>
 
@@ -185,9 +196,20 @@
 <b>
   Show screenshots of the teapot before and after some edge flips.
 </b>
-<p>
-    YOUR RESPONSE GOES HERE
-</p>
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/p4-1.png" align="middle" width="400px"/>
+        <figcaption>before flip</figcaption>
+      </td>
+      <td>
+        <img src="images/p4-2.png" align="middle" width="400px"/>
+        <figcaption>after flip</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
 <br>
 
 
@@ -205,7 +227,7 @@
   Briefly explain how you implemented the edge split operation and describe any interesting implementation / debugging tricks you have used.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  Similar to the edge flip operation, for the edge split operation, I drew two triangles, selected the e0 edge, and labeled all the elements involved in the split operation. Then, I assigned values to these elements. Following that, based on the diagram after the split, I initialized new elements and adjusted the pointers of the elements. Once all the element pointers are properly adjusted, the split operation is successfully completed.
 </p>
 <br>
 
@@ -213,18 +235,40 @@
 <b>
     Show screenshots of a mesh before and after some edge splits. 
 </b>
-<p>
-    YOUR RESPONSE GOES HERE
-</p>
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/p5-1.png" align="middle" width="400px"/>
+        <figcaption>before split</figcaption>
+      </td>
+      <td>
+        <img src="images/p5-2.png" align="middle" width="400px"/>
+        <figcaption>after split</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
 <br>
 
 
 <b>
     Show screenshots of a mesh before and after a combination of both edge splits and edge flips.
 </b>
-<p>
-    YOUR RESPONSE GOES HERE
-</p>
+<div align="middle">
+  <table style="width:100%">
+    <tr align="center">
+      <td>
+        <img src="images/p5-1.png" align="middle" width="400px"/>
+        <figcaption>before split&flip</figcaption>
+      </td>
+      <td>
+        <img src="images/p5-3.png" align="middle" width="400px"/>
+        <figcaption>after split&flip</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
 <br>
 
 
