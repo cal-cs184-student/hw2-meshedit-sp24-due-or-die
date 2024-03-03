@@ -136,7 +136,7 @@
   Briefly explain how de Casteljau algorithm extends to Bezier surfaces and how you implemented it in order to evaluate Bezier surfaces.
 </b>
 <p>
-    YOUR RESPONSE GOES HERE
+  The de Casteljau algorithm extended to Bézier surfaces simply uses two parameters, u and v. First, interpolate each row of control points using u to generate a series of final control points. Then, interpolate this set of control points using the v parameter to obtain the point on the Bézier surface corresponding to the pair of u and v. I implement the Bézier surface by calling evaluate1D with parameter u for each row of control points, and then calling evaluate1D with parameter v on the resulting n control points.
 </p>
 <br>
 
@@ -144,9 +144,9 @@
 <b>
   Show a screenshot of bez/teapot.bez (not .dae) evaluated by your implementation.
 </b>
-<p>
-    YOUR RESPONSE GOES HERE
-</p>
+<div align="middle">
+  <img src="images/p2.png" align="middle" width="50%">
+</div>  
 <br>
 
 

@@ -36,7 +36,13 @@ namespace CGL
   std::vector<Vector3D> BezierPatch::evaluateStep(std::vector<Vector3D> const &points, double t) const
   {
     // TODO Part 2.
-    return std::vector<Vector3D>();
+    vector<Vector3D> next_patch;
+    int num_points = points.size();
+    for(int i = 0; i < num_points - 1; i++){
+      Vector3D next_point = points[i] * (1 - t) + points[i+1] * t;
+      next_patch.push_back(next_point);
+    }
+    return next_patch;
   }
 
   /**
@@ -49,7 +55,12 @@ namespace CGL
   Vector3D BezierPatch::evaluate1D(std::vector<Vector3D> const &points, double t) const
   {
     // TODO Part 2.
-    return Vector3D();
+    vector<Vector3D> next_patch;
+    next_patch = evaluateStep(points, t);
+    while(next_patch.size() != 1){
+      next_patch = evaluateStep(next_patch, t);
+    }
+    return next_patch[0];
   }
 
   /**
@@ -62,7 +73,14 @@ namespace CGL
   Vector3D BezierPatch::evaluate(double u, double v) const 
   {  
     // TODO Part 2.
-    return Vector3D();
+    vector<Vector3D> moving_curve;
+    int num_col = controlPoints.size();
+    Vector3D moving_point;
+    for(int i = 0; i < num_col; i++){
+      moving_point = evaluate1D(controlPoints[i], u);
+      moving_curve.push_back(moving_point);
+    }
+    return evaluate1D(moving_curve, v);
   }
 
   Vector3D Vertex::normal( void ) const
